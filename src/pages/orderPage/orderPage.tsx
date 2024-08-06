@@ -56,6 +56,11 @@ const StyledInfo = styled.div`
   & > h3,
   & > p {
     text-align: left;
+    overflow: hidden;
+    display: -webkit-box;
+    max-width: 500px;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
   }
 `
 const StyledAction = styled.div`
@@ -69,7 +74,7 @@ const StyledButtons = styled.div`
   gap: 8px;
   align-items: center;
   flex-wrap: wrap-reverse;
-  max-width: 128px;
+  width: 88px;
   justify-content: end;
 
   button {

@@ -22,7 +22,7 @@ const StyledCartIcon = styled(ShoppingCartOutlined)`
 `
 const CartButton: React.FC<CartButtonProps> = ({ onClick }: CartButtonProps) => {
   return (
-    <Button onClick={onClick}>
+    <Button onClick={onClick} style={{ maxWidth: 100 }}>
       <StyledCartIcon></StyledCartIcon>
     </Button>
   )

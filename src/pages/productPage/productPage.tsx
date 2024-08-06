@@ -18,12 +18,28 @@ const StyledLayout = styled(Layout)`
 const StyledImg = styled.img`
   width: 320px;
   aspect-ratio: 1/1;
+  object-fit: cover;
 `
 const StyledInfo = styled.div`
   flex-grow: 1;
   text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 60%;
+
+  h1 {
+    font-size: 32px;
+  }
+
+  p {
+    font-size: 18px;
+    text-align: justify;
+  }
 `
-const StyledPrice = styled.h2``
+const StyledPrice = styled.h1`
+  text-align: right;
+`
 const ProductPage: React.FC = () => {
   const { t } = useTranslation()
   const dispatch = useDispatch()

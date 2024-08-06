@@ -28,7 +28,6 @@ const StyledCardsContainer = styled.div`
   padding-top: 16px;
   gap: 16px;
   flex-wrap: wrap;
-  align-items: center;
   justify-content: center;
 `
 const StyledCard = styled(Card)`
@@ -40,6 +39,19 @@ const StyledCard = styled(Card)`
   min-width: 128px;
   flex-grow: 1;
   flex-shrink: 1;
+  max-height: 530px;
+
+  & .ant-card-meta-description > div {
+    overflow: hidden;
+  }
+
+  & .ant-card-meta-description > div > p {
+    overflow: hidden;
+    display: -webkit-box;
+    max-width: 320px;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+  }
 
   &.ant-card .ant-card-actions > li > span {
     display: flex;
