@@ -1,0 +1,11 @@
+{
+  "search": "Search",
+  "name": "Name",
+  "surname": "Surname",
+  "phone": "Phone number",
+  "address": "Address",
+  "total": "Total sum",
+  "submit": "Submit",
+  "UAH": "₴",
+  "USD": "$"
+}
