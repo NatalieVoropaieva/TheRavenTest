@@ -24,11 +24,12 @@ const StyledSearch = styled(Search)`
   max-width: 320px;
 `
 const StyledCardsContainer = styled.div`
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 256px);
   padding-top: 16px;
   gap: 16px;
-  flex-wrap: wrap;
-  justify-content: center;
+
+  justify-content: space-between;
 `
 const StyledCard = styled(Card)`
   max-width: 256px;
