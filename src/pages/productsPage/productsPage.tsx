@@ -1,5 +1,5 @@
 import React, { MouseEvent, useCallback, useEffect, useState } from 'react'
-import { Card, GetProps, Input, Layout } from 'antd'
+import { Card, GetProps, Input, Layout, Rate } from 'antd'
 import styled from 'styled-components'
 import { useTranslation } from 'react-i18next'
 import reactImg from '../../assets/react.svg'
@@ -109,8 +109,9 @@ const ProductsPage: React.FC = () => {
                 <Meta
                   title={product.name}
                   description={
-                    <div style={{ display: 'flex', flexDirection: 'column' }}>
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
                       <p style={{ maxWidth: '100%' }}>{product.description}</p>
+                      <Rate value={product.rate} allowHalf disabled></Rate>
                       <h3 style={{ color: 'red', alignSelf: 'flex-end' }}>
                         {product.priceDictionary[currentCurrency]} {t(currentCurrency)}
                       </h3>

@@ -47,6 +47,7 @@ const StyledProductCard = styled.div`
 const StyledImage = styled.img`
   aspect-ratio: 1/1;
   height: 100%;
+  object-fit: cover;
 `
 const StyledInfo = styled.div`
   display: flex;
