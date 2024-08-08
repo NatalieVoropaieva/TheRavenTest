@@ -120,7 +120,6 @@ interface OrderValues {
   surname: string
   phone: string
   address: string
-  productDictionary: string
 }
 
 interface OrderProps {
@@ -133,7 +132,6 @@ const defaultValues = {
   surname: '',
   phone: '',
   address: '',
-  productDictionary: '',
 }
 const schema = yup
   .object()
@@ -142,7 +140,6 @@ const schema = yup
     surname: yup.string().required('surname_required'),
     phone: yup.string().required('phone_required'),
     address: yup.string().required('address_required'),
-    productDictionary: yup.string().required('products_required'),
   })
   .required() as ObjectSchema<OrderValues>
 
@@ -181,12 +178,10 @@ const OrderPage: React.FC<OrderProps> = ({ initialValues }: OrderProps) => {
     validationSchema: schema,
     onSubmit,
   })
-  console.log(formik.values)
   return (
     <StyledLayout>
       <ProductsContainer>
         {Object.values(productDictionary).map((product) => {
-          formik.values.productDictionary = JSON.stringify(product)
           return (
             <StyledProductCard key={product.product.id}>
               <StyledImage src={product.product.image} alt=''></StyledImage>
@@ -258,8 +253,8 @@ const OrderPage: React.FC<OrderProps> = ({ initialValues }: OrderProps) => {
             ></Input>
             {formik.errors.address && <ErrorText>{t(`${formik.errors.address}`)}</ErrorText>}
           </label>
-          {formik.errors.productDictionary && (
-            <ErrorText>{t(`${formik.errors.productDictionary}`)}</ErrorText>
+          {Object.values(productDictionary).length === 0 && (
+            <ErrorText>{t('products_required')}</ErrorText>
           )}
           <Button type={'primary'} htmlType={'submit'} color={'#067dfe'} size={'large'}>
             {t('submit')}
