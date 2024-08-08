@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { getCurrentCurrency, getProduct } from '../../store/selector.ts'
 import { addProductAction, getProductByIdAction } from '../../store/action.ts'
-import { Layout } from 'antd'
+import { Layout, Rate } from 'antd'
 import styled from 'styled-components'
 import { useTranslation } from 'react-i18next'
 import type { ProductModel } from '../../models/ProductModel.ts'
@@ -60,6 +60,7 @@ const ProductPage: React.FC = () => {
       <StyledInfo>
         <h1>{product?.name}</h1>
         <p>{product?.description}</p>
+        <Rate value={product?.rate} allowHalf disabled></Rate>
         <CartButton onClick={() => product && addProduct(product)}></CartButton>
       </StyledInfo>
       <StyledPrice>
