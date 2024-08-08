@@ -7,3 +7,4 @@ export const SUB_PRODUCT = 'SUB_PRODUCT'
 export const REMOVE_PRODUCT = 'REMOVE_PRODUCT'
 export const CREATE_ORDER = createAsyncActionType('CREATE_ORDER')
 export const CHANGE_CURRENCY = 'CHANGE_CURRENCY'
+export const CLEAR_CART = 'CLEAR_CART'

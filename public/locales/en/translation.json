@@ -13,5 +13,6 @@
   "name_required": "Name is required",
   "surname_required": "Surname is required",
   "phone_required": "Phone is required",
-  "address_required": "Address is required"
+  "address_required": "Address is required",
+  "products_required": "You didn't add any product"
 }

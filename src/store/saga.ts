@@ -33,8 +33,9 @@ function* getProductByIdSaga(action: ReturnType<typeof getProductByIdAction>) {
 
 function* createOrderSaga(action: ReturnType<typeof createOrderAction>) {
   try {
-    yield call(createOrder, action.payload)
+    yield call(createOrder, action.payload.order)
     yield put(createOrderSuccess())
+    action.payload?.callback && action.payload?.callback(action.payload.order)
   } catch (e: any) {
     yield put(createOrderFailure({ error: e.message }))
   }

@@ -3,6 +3,7 @@ import { createReducer } from '@reduxjs/toolkit'
 import {
   addProductAction,
   changeCurrencyAction,
+  clearCartAction,
   createOrderAction,
   createOrderFailure,
   createOrderSuccess,
@@ -146,6 +147,12 @@ const cartReducer = createReducer<CartState>(cartInitial, (builder) => {
         ...state,
         pending: false,
         error: 'error',
+      }
+    })
+    .addCase(clearCartAction, (state) => {
+      return {
+        ...state,
+        productDictionary: {},
       }
     })
 })

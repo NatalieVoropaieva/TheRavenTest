@@ -1,6 +1,7 @@
 import type { ProductModel } from '../models/ProductModel.ts'
 import type { OrderModel, ProductDictionary } from '../models/OrderModel.ts'
 import type { CurrencyEnum } from '../enums/currency.enum.ts'
+import type { WithCallback } from './utils/index.ts'
 
 export interface ProductsState {
   products: ProductModel[] | null
@@ -15,4 +16,8 @@ export interface CartState {
   error: string | null
   productDictionary: ProductDictionary
   order: OrderModel | null
+}
+
+export interface CreateOrderPayload extends WithCallback<OrderModel> {
+  order: OrderModel
 }

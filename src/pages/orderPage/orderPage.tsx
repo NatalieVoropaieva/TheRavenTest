@@ -12,6 +12,7 @@ import {
 } from '../../store/selector.ts'
 import {
   addProductAction,
+  clearCartAction,
   createOrderAction,
   removeProductAction,
   subProductAction,
@@ -95,6 +96,7 @@ const OrderInfoContainer = styled.div`
   box-shadow: #ababab 0 0 7px -1px;
   width: 320px;
   border-radius: 8px;
+  height: fit-content;
 
   form {
     display: flex;
@@ -118,6 +120,7 @@ interface OrderValues {
   surname: string
   phone: string
   address: string
+  productDictionary: string
 }
 
 interface OrderProps {
@@ -130,6 +133,7 @@ const defaultValues = {
   surname: '',
   phone: '',
   address: '',
+  productDictionary: '',
 }
 const schema = yup
   .object()
@@ -138,6 +142,7 @@ const schema = yup
     surname: yup.string().required('surname_required'),
     phone: yup.string().required('phone_required'),
     address: yup.string().required('address_required'),
+    productDictionary: yup.string().required('products_required'),
   })
   .required() as ObjectSchema<OrderValues>
 
@@ -151,13 +156,22 @@ const OrderPage: React.FC<OrderProps> = ({ initialValues }: OrderProps) => {
   const onSubmit = (values: OrderValues) => {
     dispatch(
       createOrderAction({
-        name: values.name,
-        surname: values.surname,
-        phone: values.phone,
-        address: values.address,
-        totalPrice: +totalSum,
-        currency: CurrencyEnum.UAH,
-        productsDictionary: productDictionary,
+        order: {
+          name: values.name,
+          surname: values.surname,
+          phone: values.phone,
+          address: values.address,
+          totalPrice: +totalSum,
+          currency: CurrencyEnum.UAH,
+          productsDictionary: productDictionary,
+        },
+        callback: () => {
+          navigate('/success')
+          formik.resetForm({
+            values: formik.values,
+          })
+          dispatch(clearCartAction())
+        },
       }),
     )
   }
@@ -172,6 +186,7 @@ const OrderPage: React.FC<OrderProps> = ({ initialValues }: OrderProps) => {
     <StyledLayout>
       <ProductsContainer>
         {Object.values(productDictionary).map((product) => {
+          formik.values.productDictionary = JSON.stringify(product)
           return (
             <StyledProductCard key={product.product.id}>
               <StyledImage src={product.product.image} alt=''></StyledImage>
@@ -243,7 +258,9 @@ const OrderPage: React.FC<OrderProps> = ({ initialValues }: OrderProps) => {
             ></Input>
             {formik.errors.address && <ErrorText>{t(`${formik.errors.address}`)}</ErrorText>}
           </label>
-
+          {formik.errors.productDictionary && (
+            <ErrorText>{t(`${formik.errors.productDictionary}`)}</ErrorText>
+          )}
           <Button type={'primary'} htmlType={'submit'} color={'#067dfe'} size={'large'}>
             {t('submit')}
           </Button>

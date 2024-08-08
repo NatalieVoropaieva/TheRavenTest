@@ -13,5 +13,6 @@
   "name_required": "Необхідно вказати ім'я",
   "surname_required": "Необхідно вказати прізвище",
   "phone_required": "Необхідно вказати номер телефону",
-  "address_required": "Необхідно вказати адресу"
+  "address_required": "Необхідно вказати адресу",
+  "products_required": "Ви не додали жодного товару"
 }

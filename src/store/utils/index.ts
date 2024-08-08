@@ -8,6 +8,10 @@ export interface AsyncActionType {
   failure: string
 }
 
+export interface WithCallback<T> {
+  callback?: (payload: T) => void
+}
+
 export const createAsyncActionType = (type: string): AsyncActionType => {
   return {
     request: `${type}_REQUEST`,
