@@ -150,6 +150,7 @@ const cartReducer = createReducer<CartState>(cartInitial, (builder) => {
       }
     })
     .addCase(clearCartAction, (state) => {
+      sessionStorage.removeItem(CART_KEY)
       return {
         ...state,
         productDictionary: {},
