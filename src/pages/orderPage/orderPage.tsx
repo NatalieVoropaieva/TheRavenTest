@@ -19,6 +19,7 @@ import {
 import { useTranslation } from 'react-i18next'
 import type { AppDispatch } from '../../store/index.ts'
 import { CurrencyEnum } from '../../enums/currency.enum.ts'
+import { useNavigate } from 'react-router-dom'
 
 const StyledLayout = styled(Layout)`
   display: flex;
@@ -93,7 +94,6 @@ const OrderInfoContainer = styled.div`
   background-color: #fff;
   box-shadow: #ababab 0 0 7px -1px;
   width: 320px;
-  max-height: 392px;
   border-radius: 8px;
 
   form {
@@ -107,6 +107,10 @@ const OrderInfoContainer = styled.div`
       text-align: left;
     }
   }
+`
+const ErrorText = styled.p`
+  margin-top: 8px;
+  color: #d01d1d;
 `
 
 interface OrderValues {
@@ -127,7 +131,6 @@ const defaultValues = {
   phone: '',
   address: '',
 }
-// const passwordRegEx = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/
 const schema = yup
   .object()
   .shape({
@@ -144,7 +147,7 @@ const OrderPage: React.FC<OrderProps> = ({ initialValues }: OrderProps) => {
   const { t } = useTranslation()
   const dispatch = useDispatch<AppDispatch>()
   const currentCurrency = useSelector(getCurrentCurrency)
-
+  const navigate = useNavigate()
   const onSubmit = (values: OrderValues) => {
     dispatch(
       createOrderAction({
@@ -203,7 +206,9 @@ const OrderPage: React.FC<OrderProps> = ({ initialValues }: OrderProps) => {
               value={formik.values.name}
               name={'name'}
               onChange={formik.handleChange}
+              status={formik.errors.name && 'error'}
             ></Input>
+            {formik.errors.name && <ErrorText>{t(`${formik.errors.name}`)}</ErrorText>}
           </label>
           <label>
             <p>{t('surname')}</p>
@@ -212,7 +217,9 @@ const OrderPage: React.FC<OrderProps> = ({ initialValues }: OrderProps) => {
               value={formik.values.surname}
               name={'surname'}
               onChange={formik.handleChange}
+              status={formik.errors.surname && 'error'}
             ></Input>
+            {formik.errors.surname && <ErrorText>{t(`${formik.errors.surname}`)}</ErrorText>}
           </label>
           <label>
             <p>{t('phone')}</p>
@@ -221,7 +228,9 @@ const OrderPage: React.FC<OrderProps> = ({ initialValues }: OrderProps) => {
               value={formik.values.phone}
               name={'phone'}
               onChange={formik.handleChange}
+              status={formik.errors.phone && 'error'}
             ></Input>
+            {formik.errors.phone && <ErrorText>{t(`${formik.errors.phone}`)}</ErrorText>}
           </label>
           <label>
             <p>{t('address')}</p>
@@ -230,7 +239,9 @@ const OrderPage: React.FC<OrderProps> = ({ initialValues }: OrderProps) => {
               value={formik.values.address}
               name={'address'}
               onChange={formik.handleChange}
+              status={formik.errors.address && 'error'}
             ></Input>
+            {formik.errors.address && <ErrorText>{t(`${formik.errors.address}`)}</ErrorText>}
           </label>
 
           <Button type={'primary'} htmlType={'submit'} color={'#067dfe'} size={'large'}>

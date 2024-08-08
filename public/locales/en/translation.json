@@ -7,5 +7,11 @@
   "total": "Total sum",
   "submit": "Submit",
   "UAH": "₴",
-  "USD": "$"
+  "USD": "$",
+  "success": "Success!",
+  "success_text": "Your order has been successfully made!",
+  "name_required": "Name is required",
+  "surname_required": "Surname is required",
+  "phone_required": "Phone is required",
+  "address_required": "Address is required"
 }

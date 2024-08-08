@@ -6,6 +6,7 @@ import Loader from './components/Loader/Loader.tsx'
 const Products = lazy(() => import('./pages/productsPage/productsPage'))
 const Product = lazy(() => import('./pages/productPage/productPage'))
 const Order = lazy(() => import('./pages/orderPage/orderPage'))
+const Success = lazy(() => import('./pages/successPage/successPage'))
 export const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path={'/'} element={<App />}>
@@ -30,6 +31,14 @@ export const router = createBrowserRouter(
         element={
           <Suspense fallback={<Loader />}>
             <Order />
+          </Suspense>
+        }
+      ></Route>
+      <Route
+        path={'success'}
+        element={
+          <Suspense fallback={<Loader />}>
+            <Success />
           </Suspense>
         }
       ></Route>
